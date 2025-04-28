@@ -57,7 +57,7 @@ with col1:
     fig1, ax1 = plt.subplots()
     gender_distribution = df['Gender'].value_counts().reset_index()
     gender_distribution.columns = ['Gender', 'Count']
-    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='pastel', ax=ax1)
+    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='dark', ax=ax1)
     ax1.set_xlabel("Gender")
     ax1.set_ylabel("Count")
     st.pyplot(fig1)
@@ -80,7 +80,7 @@ with col2:
 # --------- Third Graph ----------
 with col3:
     st.markdown(
-    "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
+    "<h3 style='color: #D95F59;'>Age-wise Distribution</h3>", 
     unsafe_allow_html=True
     )
     bins = [18, 21, 24, 27, 30, 33, 36]
