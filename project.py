@@ -26,9 +26,14 @@ st.markdown("""
 # Load the data
 df = pd.read_csv("ecommerce_customer_data.csv")
 
-# Display the data
-st.subheader("Raw Data")
-st.dataframe(df)
+st.markdown("""
+<div style="background: linear-gradient(135deg, #e1f7d5, #d1eaf7); padding: 10px 20px; border-radius: 10px;">
+    <h2 style="color: #1F618D; font-family: 'Georgia';">Understanding Customer Diversity</h2>
+    <p style="color: grey; font-size: 16px; font-family: 'Arial';">
+    Analyzing age, gender, and location patterns to better understand our customer base.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
 # Gender-wise Distribution
 st.subheader("Gender-wise Customer Distribution")
