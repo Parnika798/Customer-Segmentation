@@ -21,7 +21,7 @@ st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
 
 st.markdown("""
 <div style="background-color: #78281f; padding: 10px; border-radius: 10px;">
-<h1 style='text-align: left; color: #212f3d;'>Customer Behavior Uncovered: Trends You Can't Ignore</h1>
+<h1 style='text-align: left; color: #fdfefe;'>Customer Behavior Uncovered: Trends You Can't Ignore</h1>
 </div>
 """, unsafe_allow_html=True)
 
