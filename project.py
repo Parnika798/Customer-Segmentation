@@ -21,7 +21,7 @@ st.set_page_config(page_title="Customer Analysis", layout="wide")
 
 # ✅ Now write your title using Streamlit
 st.markdown("""
-    <h1 style='text-align: center; color: #A64D79; font-size: 3rem;'>
+    <h1 style='text-align: right; color: #A64D79; font-size: 3rem;'>
         Customer Behavior Uncovered: Trends You Can't Ignore
     </h1>
 """, unsafe_allow_html=True)
