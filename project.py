@@ -16,11 +16,6 @@ import seaborn as sns
 # Set Streamlit page config
 st.set_page_config(page_title="Customer Analysis", layout="wide")
 
-st.markdown("""
-<div style="background-color: #e74c3c ; padding: 10px; border-radius: 10px;">
-<h1 style='text-align: left; color: #fdfefe;'>Customer Behavior Uncovered: Trends You Can't Ignore</h1>
-</div>
-""", unsafe_allow_html=True)
 
 st.markdown("""
 <h2 style="background: linear-gradient(to right, #000000, #ffffff); 
