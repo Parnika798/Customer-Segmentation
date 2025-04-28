@@ -24,6 +24,35 @@ st.markdown("""
 </h2>
 """, unsafe_allow_html=True)
 
+import streamlit as st
+
+# Elegant background CSS
+st.markdown("""
+    <style>
+    /* Apply background to the whole app */
+    .stApp {
+        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(240, 248, 255, 0.85)), 
+                    url('https://www.toptal.com/designers/subtlepatterns/patterns/paper-fibers.png');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    /* Optional: Style the main title */
+    .stApp h1 {
+        background: linear-gradient(to right, #4e54c8, #8f94fb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    /* Optional: Make section headers more elegant */
+    .stApp h2 {
+        color: #3E3E3E;
+        font-family: 'Georgia', serif;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 
 # Load the data
