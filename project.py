@@ -50,7 +50,10 @@ col1, col2, col3 = st.columns(3)
 
 # --------- First Graph ----------
 with col1:
-    st.subheader("Gender Distribution")
+    st.markdown(
+    "<h3 style='color: #D95F59;'>Gender-wise Distribution</h3>", 
+    unsafe_allow_html=True
+)
     fig1, ax1 = plt.subplots()
     gender_distribution = df['Gender'].value_counts().reset_index()
     gender_distribution.columns = ['Gender', 'Count']
@@ -61,7 +64,10 @@ with col1:
 
 # --------- Second Graph ----------
 with col2:
-    st.subheader("Location Distribution")
+        st.markdown(
+    "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
+    unsafe_allow_html=True
+)
     fig2, ax2 = plt.subplots()
     location_distribution = df['Location'].value_counts().reset_index()
     location_distribution.columns = ['Location', 'Count']
@@ -73,7 +79,10 @@ with col2:
 
 # --------- Third Graph ----------
 with col3:
-    st.subheader("Age Group Distribution")
+            st.markdown(
+    "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
+    unsafe_allow_html=True
+)
     bins = [18, 21, 24, 27, 30, 33, 36]
     labels = ['18-20', '21-23', '24-26', '27-29', '30-32', '33-35']
     df['Age Group'] = pd.cut(df['Age'], bins=bins, labels=labels, right=False)
