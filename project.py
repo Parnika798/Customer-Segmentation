@@ -26,33 +26,43 @@ st.markdown("""
 
 import streamlit as st
 
-# Elegant background CSS
+# 🎨 Elegant Noise Background + Gradient Title
 st.markdown("""
     <style>
-    /* Apply background to the whole app */
+    /* Background Styling */
     .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(240, 248, 255, 0.85)), 
-                    url('https://www.toptal.com/designers/subtlepatterns/patterns/paper-fibers.png');
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9)),
+                    url('https://www.transparenttextures.com/patterns/asfalt-light.png');
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
     }
 
-    /* Optional: Style the main title */
+    /* Title Styling */
     .stApp h1 {
-        background: linear-gradient(to right, #4e54c8, #8f94fb);
+        font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 900;
+        font-size: 3rem;
+        background: linear-gradient(90deg, #7F7FD5, #86A8E7, #91EAE4);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-weight: bold;
+        padding: 20px 0px 10px 0px;
+        text-align: center;
     }
 
-    /* Optional: Make section headers more elegant */
+    /* Subheading Styling */
     .stApp h2 {
-        color: #3E3E3E;
+        color: #333333;
         font-family: 'Georgia', serif;
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
     }
     </style>
 """, unsafe_allow_html=True)
+
+# ✅ Now write your title using Streamlit
+st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
 
 
 # Load the data
