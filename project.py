@@ -45,33 +45,44 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Gender-wise Distribution
-st.subheader("Gender-wise Customer Distribution")
+# Create 3 columns
+col1, col2, col3 = st.columns(3)
 
-gender_distribution = df['Gender'].value_counts().reset_index()
-gender_distribution.columns = ['Gender', 'Count']
+# --------- First Graph ----------
+with col1:
+    st.subheader("Gender Distribution")
+    fig1, ax1 = plt.subplots()
+    gender_distribution = df['Gender'].value_counts().reset_index()
+    gender_distribution.columns = ['Gender', 'Count']
+    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='pastel', ax=ax1)
+    ax1.set_xlabel("Gender")
+    ax1.set_ylabel("Count")
+    st.pyplot(fig1)
 
-fig1, ax1 = plt.subplots()
-sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='pastel', ax=ax1)
-ax1.set_title("Gender-wise Customer Distribution")
-ax1.set_xlabel("Gender")
-ax1.set_ylabel("No. of Customers")
-st.pyplot(fig1)
+# --------- Second Graph ----------
+with col2:
+    st.subheader("Location Distribution")
+    fig2, ax2 = plt.subplots()
+    location_distribution = df['Location'].value_counts().reset_index()
+    location_distribution.columns = ['Location', 'Count']
+    sns.barplot(x='Location', y='Count', data=location_distribution, palette='viridis', ax=ax2)
+    ax2.set_xlabel("Location")
+    ax2.set_ylabel("Count")
+    plt.xticks(rotation=45, ha='right')
+    st.pyplot(fig2)
 
-# Location-wise Distribution
-st.subheader("Location-wise Customer Distribution")
-
-location_dist = df['Location'].value_counts().reset_index()
-location_dist.columns = ['Location', 'Count']
-
-fig2, ax2 = plt.subplots(figsize=(10,5))
-sns.barplot(x='Location', y='Count', data=location_dist, palette='viridis', ax=ax2)
-ax2.set_title("Location-wise Customer Distribution")
-ax2.set_xlabel("Location")
-ax2.set_ylabel("No. of Customers")
-plt.xticks(rotation=45, ha='right')
-st.pyplot(fig2)
-
+# --------- Third Graph ----------
+with col3:
+    st.subheader("Age Group Distribution")
+    bins = [18, 21, 24, 27, 30, 33, 36]
+    labels = ['18-20', '21-23', '24-26', '27-29', '30-32', '33-35']
+    df['Age Group'] = pd.cut(df['Age'], bins=bins, labels=labels, right=False)
+    fig3, ax3 = plt.subplots()
+    age_group_distribution = df['Age Group'].value_counts().sort_index()
+    sns.barplot(x=age_group_distribution.index, y=age_group_distribution.values, palette='coolwarm', ax=ax3)
+    ax3.set_xlabel("Age Group")
+    ax3.set_ylabel("Count")
+    st.pyplot(fig3)
 
 
 
