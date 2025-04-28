@@ -26,27 +26,10 @@ st.markdown("""
 # Load the data
 df = pd.read_csv("ecommerce_customer_data.csv")
 
-st.markdown("""
-<div style="background: linear-gradient(135deg, #e1f7d5, #d1eaf7); padding: 10px 20px; border-radius: 10px;">
-    <h2 style="color: #1F618D; font-family: 'Georgia';">Understanding Customer Diversity</h2>
-    <p style="color: grey; font-size: 16px; font-family: 'Arial';">
-    Analyzing age, gender, and location patterns to better understand our customer base.
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<div style="background: linear-gradient(to right, #f5f7fa, #e1f7d5); padding: 10px 20px; border-radius: 15px; border: 2px solid #1F618D;">
-    <h2 style="color: #1F618D; font-family: 'Georgia';">Understanding Customer Diversity</h2>
-    <p style="color: grey; font-size: 16px; font-family: 'Arial';">
-    Analyzing age, gender, and location patterns to better understand our customer base.
-    </p>
-</div>
-""", unsafe_allow_html=True)
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
-    <h2 style="color: #1F618D; font-family: 'Georgia';">Understanding Customer Diversity</h2>
+    <h2 style="color: #1F618D;">Understanding Customer Diversity</h2>
     <p style="color: grey; font-size: 16px; font-family: 'Arial';">
     Analyzing age, gender, and location patterns to better understand our customer base.
     </p>
