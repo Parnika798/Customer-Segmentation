@@ -17,49 +17,7 @@ import seaborn as sns
 st.set_page_config(page_title="Customer Analysis", layout="wide")
 
 
-st.markdown("""
-<h2 style="background: linear-gradient(to right, #000000, #ffffff); 
-    -webkit-background-clip: text; color: transparent; font-family: 'Georgia';">
-    Understanding Customer Diversity
-</h2>
-""", unsafe_allow_html=True)
 
-import streamlit as st
-
-# 🎨 Elegant Noise Background + Gradient Title
-st.markdown("""
-    <style>
-    /* Background Styling */
-    .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9)),
-                    url('https://www.transparenttextures.com/patterns/asfalt-light.png');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-    }
-
-    /* Title Styling */
-    .stApp h1 {
-        font-family: 'Helvetica Neue', sans-serif;
-        font-weight: 900;
-        font-size: 3rem;
-        background: linear-gradient(90deg, #7F7FD5, #86A8E7, #91EAE4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding: 20px 0px 10px 0px;
-        text-align: center;
-    }
-
-    /* Subheading Styling */
-    .stApp h2 {
-        color: #333333;
-        font-family: 'Georgia', serif;
-        font-size: 1.8rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 # ✅ Now write your title using Streamlit
 st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
