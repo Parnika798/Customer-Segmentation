@@ -22,6 +22,14 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<h2 style="background: linear-gradient(to right, #000000, #ffffff); 
+    -webkit-background-clip: text; color: transparent; font-family: 'Georgia';">
+    Understanding Customer Diversity
+</h2>
+""", unsafe_allow_html=True)
+
+
 
 # Load the data
 df = pd.read_csv("ecommerce_customer_data.csv")
