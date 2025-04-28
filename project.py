@@ -20,7 +20,7 @@ st.set_page_config(page_title="Customer Analysis", layout="wide")
 
 
 # ✅ Now write your title using Streamlit
-st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
+st.title("Customer Behavior Uncovered: Trends You Can't Ignore",color: #522546)
 
 
 # Load the data
