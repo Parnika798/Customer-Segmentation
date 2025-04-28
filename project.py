@@ -57,7 +57,7 @@ with col1:
     fig1, ax1 = plt.subplots()
     gender_distribution = df['Gender'].value_counts().reset_index()
     gender_distribution.columns = ['Gender', 'Count']
-    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='magma', ax=ax1)
+    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='blues', ax=ax1)
     ax1.set_xlabel("Gender")
     ax1.set_ylabel("Count")
     st.pyplot(fig1)
