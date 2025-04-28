@@ -65,3 +65,22 @@ plt.xticks(rotation=45, ha='right')
 st.pyplot(fig2)
 
 
+
+
+st.markdown("""
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+    <h2 style="color: #1F618D;">Customer Browsing and Engagement Trends</h2>
+    <p style="color: #212f3d; font-size: 16px; font-family: 'Arial';">
+    Exploring how customers interact with our platform through browsing behavior and engagement metrics.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+    <h2 style="color: #1F618D;">Transactional Insights: Frequency and Preferences</h2>
+    <p style="color: #212f3d; font-size: 16px; font-family: 'Arial';">
+    Uncovering purchase habits, spending patterns, and product preferences across customers.
+    </p>
+</div>
+""", unsafe_allow_html=True)
