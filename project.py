@@ -64,7 +64,7 @@ with col1:
 
 # --------- Second Graph ----------
 with col2:
-        st.markdown(
+    st.markdown(
     "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
     unsafe_allow_html=True
     )
@@ -79,7 +79,7 @@ with col2:
 
 # --------- Third Graph ----------
 with col3:
-            st.markdown(
+    st.markdown(
     "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
     unsafe_allow_html=True
     )
