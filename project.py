@@ -44,6 +44,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+    <h2 style="color: #1F618D; font-family: 'Georgia';">Understanding Customer Diversity</h2>
+    <p style="color: grey; font-size: 16px; font-family: 'Arial';">
+    Analyzing age, gender, and location patterns to better understand our customer base.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
 
 # Gender-wise Distribution
 st.subheader("Gender-wise Customer Distribution")
