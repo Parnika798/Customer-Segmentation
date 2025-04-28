@@ -29,8 +29,8 @@ df = pd.read_csv("ecommerce_customer_data.csv")
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
-    <h2 style="color: #1F618D;">Understanding Customer Diversity</h2>
-    <p style="color: #212f3d; font-size: 16px; font-family: 'Arial';">
+    <h2 style="color: 88304E;">Understanding Customer Diversity</h2>
+    <p style="color: F7374F; font-size: 16px; font-family: 'Arial';">
     Analyzing age, gender, and location patterns to better understand our customer base.
     </p>
 </div>
@@ -69,8 +69,8 @@ st.pyplot(fig2)
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
-    <h2 style="color: #1F618D;">Customer Browsing and Engagement Trends</h2>
-    <p style="color: #212f3d; font-size: 16px; font-family: 'Arial';">
+    <h2 style="color: 88304E;">Customer Browsing and Engagement Trends</h2>
+    <p style="color: F7374F; font-size: 16px; font-family: 'Arial';">
     Exploring how customers interact with our platform through browsing behavior and engagement metrics.
     </p>
 </div>
@@ -78,8 +78,8 @@ st.markdown("""
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
-    <h2 style="color: #1F618D;">Transactional Insights: Frequency and Preferences</h2>
-    <p style="color: #212f3d; font-size: 16px; font-family: 'Arial';">
+    <h2 style="color: 88304E;">Transactional Insights: Frequency and Preferences</h2>
+    <p style="color: F7374F; font-size: 16px; font-family: 'Arial';">
     Uncovering purchase habits, spending patterns, and product preferences across customers.
     </p>
 </div>
