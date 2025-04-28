@@ -17,7 +17,14 @@ import seaborn as sns
 st.set_page_config(page_title="Customer Analysis", layout="wide")
 
 # Title
-st.title("E-commerce Customer Analysis Dashboard")
+st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
+
+st.markdown("""
+<div style="background-color: #e8f4f8; padding: 10px; border-radius: 10px;">
+<h1 style='text-align: center; font-family: "Verdana"; color: #007acc;'>Unlocking Insights: What Drives Our Customers?</h1>
+</div>
+""", unsafe_allow_html=True)
+
 
 # Load the data
 df = pd.read_csv("ecommerce_customer_data.csv")
