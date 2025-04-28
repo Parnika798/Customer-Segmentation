@@ -20,8 +20,8 @@ st.set_page_config(page_title="Customer Analysis", layout="wide")
 st.title("Customer Behavior Uncovered: Trends You Can't Ignore")
 
 st.markdown("""
-<div style="background-color: #e8f4f8; padding: 10px; border-radius: 10px;">
-<h1 style='text-align: center; font-family: "Garamond"; color: #007acc;'>Customer Behavior Uncovered: Trends You Can't Ignore</h1>
+<div style="background-color: #e74c3c; padding: 10px; border-radius: 10px;">
+<h1 style='text-align: left; font-family: "Garamond"; color: #212f3d;'>Customer Behavior Uncovered: Trends You Can't Ignore</h1>
 </div>
 """, unsafe_allow_html=True)
 
