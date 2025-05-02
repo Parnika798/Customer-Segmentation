@@ -111,18 +111,44 @@ with col2:
 # --------- Third Graph ----------
 with col3:
     st.markdown(
-    "<h3 style='color: #D95F59;'>Age-wise Distribution</h3>", 
-    unsafe_allow_html=True
+        "<h3 style='color: #D95F59;'>Age-wise Distribution</h3>", 
+        unsafe_allow_html=True
     )
+
+    # Define age groups
     bins = [18, 21, 24, 27, 30, 33, 36]
     labels = ['18-20', '21-23', '24-26', '27-29', '30-32', '33-35']
     df['Age Group'] = pd.cut(df['Age'], bins=bins, labels=labels, right=False)
-    fig3, ax3 = plt.subplots()
+
+    # Prepare distribution data
     age_group_distribution = df['Age Group'].value_counts().sort_index()
-    sns.barplot(x=age_group_distribution.index, y=age_group_distribution.values, palette='coolwarm', ax=ax3)
-    ax3.set_xlabel("Age Group")
-    ax3.set_ylabel("Count")
-    st.pyplot(fig3)
+
+    # Create Plotly bar chart
+    import plotly.express as px
+    import pandas as pd
+
+    age_df = pd.DataFrame({
+        'Age Group': age_group_distribution.index,
+        'Count': age_group_distribution.values
+    })
+
+    fig3 = px.bar(
+        age_df,
+        x='Age Group',
+        y='Count',
+        color='Age Group',
+        color_discrete_sequence=px.colors.sequential.Reds,
+        title='',
+    )
+
+    fig3.update_layout(
+        xaxis_title='Age Group',
+        yaxis_title='Count',
+        showlegend=False,
+        plot_bgcolor='white'
+    )
+
+    st.plotly_chart(fig3, use_container_width=True)
 
 
 
