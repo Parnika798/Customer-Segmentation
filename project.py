@@ -256,7 +256,7 @@ st.markdown(
     "<h3 style='color: #D95F59;'>Added to Cart VS Purchase Made</h3>", 
     unsafe_allow_html=True
 )
-fig = px.bar(df, x='Items_Added_to_Cart',y='Total_Purchases',labels={'Items_Added_to_Cart':'No. of items added to Cart','Total_Purchases':'No. of purchases made'})
+fig = px.bar(df, x='Items_Added_to_Cart',y='Total_Purchases',labels={'Items_Added_to_Cart':'No. of items added to Cart','Total_Purchases':'No. of purchases made'},color_discrete_sequence=px.colors.sequential.Reds)
 st.plotly_chart(fig)
 
 st.markdown("""
