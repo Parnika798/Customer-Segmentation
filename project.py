@@ -186,29 +186,7 @@ if uploaded_file is not None:
     # Optional: Add section to upload new customer data and predict churn
     st.markdown("---")
     st.subheader("🔍 Predict Churn on New Data")
-    predict_file = st.file_uploader("Upload Customer Data for Prediction (same structure, no Churn column)", type=["csv"], key="predict")
-
-    if predict_file is not None:
-        pred_df = pd.read_csv(predict_file)
-        for col in ['Gender', 'Location', 'Device_Type']:
-            pred_df[col] = le.transform(pred_df[col])
-
-        user_ids = pred_df['User_ID']
-        pred_df = pred_df.drop(columns=['User_ID', 'Total_Purchases'])
-        pred_scaled = scaler.transform(pred_df)
-        pred_probs = model.predict_proba(pred_scaled)[:, 1]
-        pred_class = model.predict(pred_scaled)
-
-        results_df = pd.DataFrame({
-            'User_ID': user_ids,
-            'Churn_Probability': pred_probs,
-            'Churn_Predicted': pred_class
-        })
-
-        st.dataframe(results_df)
-        st.download_button("Download Predictions", data=results_df.to_csv(index=False), file_name="churn_predictions.csv")
-
-
+    
     st.markdown("---")
     st.subheader("🧾 Manual Churn Prediction")
 
