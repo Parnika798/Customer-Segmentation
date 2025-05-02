@@ -127,7 +127,7 @@ with col3:
 
 
 st.markdown("""
-<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
     <h2 style="color: #88304E;">Customer Browsing and Engagement Trends</h2>
     <p style="color: #F7374F; font-size: 16px; font-family: 'Arial';">
     Exploring how customers interact with our platform through browsing behavior and engagement metrics.
@@ -242,7 +242,7 @@ with col2:
     st.plotly_chart(fig)
 
 st.markdown("""
-<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
     <h2 style="color: #88304E;">Transactional Insights: Frequency and Preferences</h2>
     <p style="color: #F7374F; font-size: 16px; font-family: 'Arial';">
     Uncovering purchase habits, spending patterns, and product preferences across customers.
