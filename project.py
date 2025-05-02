@@ -19,6 +19,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from imblearn.over_sampling import SMOTE
+import plotly.express as px
 
 # Set Streamlit page config
 st.set_page_config(page_title="Customer Analysis", layout="wide")
@@ -66,11 +67,12 @@ with col1:
     gender_distribution.columns = ['Gender', 'Count']
 
     # Create the pie chart
-    fig = px.pie(gender_distribution,names='Gender',values='Count',color='Gender',
-    title='Gender-wise Customer Distribution')
+    fig = px.pie(gender_distribution, names='Gender', values='Count', color='Gender',
+             title='Gender-wise Customer Distribution')
 
-    # Show the plot
+    # Streamlit: Display the pie chart
     st.plotly_chart(fig)
+
 
 # --------- Second Graph ----------
 with col2:
