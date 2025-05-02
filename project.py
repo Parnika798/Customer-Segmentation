@@ -67,8 +67,7 @@ with col1:
     gender_distribution.columns = ['Gender', 'Count']
 
     # Create the pie chart
-    fig = px.pie(gender_distribution, names='Gender', values='Count', color='Gender',
-             title='Gender-wise Customer Distribution')
+    fig = px.pie(gender_distribution, names='Gender', values='Count', color='Gender')
 
     # Streamlit: Display the pie chart
     st.plotly_chart(fig)
@@ -81,13 +80,32 @@ with col2:
     unsafe_allow_html=True
     )
     fig2, ax2 = plt.subplots()
-    location_distribution = df['Location'].value_counts().reset_index()
-    location_distribution.columns = ['Location', 'Count']
-    sns.barplot(x='Location', y='Count', data=location_distribution, palette='viridis', ax=ax2)
-    ax2.set_xlabel("Location")
-    ax2.set_ylabel("Count")
-    plt.xticks(rotation=45, ha='right')
-    st.pyplot(fig2)
+
+    # Data preparation
+    location_dist = df['Location'].value_counts().reset_index()
+    location_dist.columns = ['Location', 'Count']
+
+    # Create the interactive bar chart
+    fig = px.bar(
+    location_dist,
+    x='Location',
+    y='Count',
+    color='Location',
+    color_discrete_sequence=px.colors.sequential.Reds,
+    title='Location-wise Customer Distribution'
+    )
+
+    # Customize layout
+    fig.update_layout(
+    xaxis_title='Location',
+    yaxis_title='No. of Customers',
+    title_font=dict(size=16, family='Arial', color='black'),
+    legend_title='Location',
+    xaxis_tickangle=-45
+    )
+
+    st.show(fig)
+
 
 # --------- Third Graph ----------
 with col3:
