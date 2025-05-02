@@ -189,7 +189,7 @@ with col1:
     bargap=0.3
     )
 
-    show.plotly_chart(fig)
+    st.plotly_chart(fig)
 
 with col1:
     st.markdown(
@@ -239,7 +239,7 @@ with col1:
     bargap=0.3
     )
 
-    show.plotly_chart(fig)
+    st.plotly_chart(fig)
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
