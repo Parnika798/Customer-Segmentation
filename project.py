@@ -45,7 +45,8 @@ df = pd.read_csv("ecommerce_customer_data.csv")
 
 
 st.markdown("""
-<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center; 
+                max-width: 600px;">
     <h2 style="color: #88304E;">Understanding Customer Diversity</h2>
     <p style="color: #F7374F; font-size: 16px; font-family: 'Arial';">
     Analyzing age, gender, and location patterns to better understand our customer base.
