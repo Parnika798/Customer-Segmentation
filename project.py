@@ -191,7 +191,7 @@ with col1:
 
     st.plotly_chart(fig)
 
-with col1:
+with col2:
     st.markdown(
     "<h3 style='color: #D95F59;'>Gender vs Avg. Pages Viewed and Browsing Time</h3>", 
     unsafe_allow_html=True
@@ -249,6 +249,15 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+#Items_Added_To_cart vs Total_Purchases
+
+st.markdown(
+    "<h3 style='color: #D95F59;'>Added to Cart VS Purchase Made</h3>", 
+    unsafe_allow_html=True
+)
+fig = px.bar(df, x='Items_Added_to_Cart',y='Total_Purchases',labels={'Items_Added_to_Cart':'No. of items added to Cart','Total_Purchases':'No. of purchases made'})
+st.plotly_chart(fig)
 
 
 
