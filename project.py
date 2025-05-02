@@ -61,13 +61,16 @@ with col1:
     "<h3 style='color: #D95F59;'>Gender-wise Distribution</h3>", 
     unsafe_allow_html=True
     )
-    fig1, ax1 = plt.subplots()
+    # Data preparation
     gender_distribution = df['Gender'].value_counts().reset_index()
     gender_distribution.columns = ['Gender', 'Count']
-    sns.barplot(x='Gender', y='Count', data=gender_distribution, palette='Blues', ax=ax1)
-    ax1.set_xlabel("Gender")
-    ax1.set_ylabel("Count")
-    st.pyplot(fig1)
+
+    # Create the pie chart
+    fig = px.pie(gender_distribution,names='Gender',values='Count',color='Gender',
+    title='Gender-wise Customer Distribution')
+
+    # Show the plot
+    st.plotly_chart(fig)
 
 # --------- Second Graph ----------
 with col2:
