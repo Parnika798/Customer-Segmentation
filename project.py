@@ -30,10 +30,10 @@ st.set_page_config(page_title="Customer Analysis", layout="wide")
 
 
 st.markdown("""
-    <h1 style='text-align: right; color: #A64D79; font-size: 4rem; margin-bottom:0;'>
+    <h1 style='text-align: right; color: #BB8493; font-size: 4rem; margin-bottom:0;'>
         Customer Behavior Uncovered:
     </h1>
-    <h2 style='text-align: right; color: #A64D79; font-size: 3rem; margin-top:0;'>
+    <h2 style='text-align: right; color: #BB8493; font-size: 3rem; margin-top:0;'>
         Trends You Can't Ignore
     </h2>
 """, unsafe_allow_html=True)
