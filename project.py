@@ -58,7 +58,7 @@ st.markdown("""
 col1, col2, col3 = st.columns(3)
 
 # --------- First Graph ----------
-with col1:
+with col2:
     st.markdown(
     "<h3 style='color: #D95F59;'>Gender-wise Distribution</h3>", 
     unsafe_allow_html=True
@@ -75,7 +75,7 @@ with col1:
 
 
 # --------- Second Graph ----------
-with col2:
+with col1:
     st.markdown(
     "<h3 style='color: #D95F59;'>Location-wise Distribution</h3>", 
     unsafe_allow_html=True
