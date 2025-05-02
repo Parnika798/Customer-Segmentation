@@ -148,6 +148,31 @@ with col3:
     )
 
     st.plotly_chart(fig3, use_container_width=True)
+import streamlit as st
+
+with st.expander("View Insights"):
+    st.markdown("""
+    ### Geographic Distribution:
+    - Distribution is nearly **even across locations**.
+    
+    **Recommendation:**
+    - Focus on **strategic optimization** (ads, offers) in **high-performing regions** to boost ROI.
+
+    ---
+
+    ### Gender-Based Distribution:
+    - Consumer base is **uniform across both genders** — balanced reach.
+
+    ---
+
+    ### Age Group Insights:
+    - Majority of customers are aged **21–23** and **27–29**.
+    - The **33–35** age group shows the **lowest engagement**.
+
+    **Recommendation:**
+    - Build trust through **return policies**, **testimonials**, and promote **premium quality**.
+    - Use **simplified navigation** to better engage the **33+ age segment**.
+    """)
 
 
 
