@@ -267,7 +267,7 @@ with col2:
     st.plotly_chart(fig)
     
 with st.expander("View Insights:"):
-st.markdown("""
+     st.markdown("""
     
     ✅ Insights:
     - Tablet users spend the most time and view nearly the same number of pages as mobile users.
