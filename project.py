@@ -112,3 +112,102 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+import joblib
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from imblearn.over_sampling import SMOTE
+
+st.set_page_config(page_title="Churn Predictor", layout="wide")
+
+st.title("🧠 Customer Churn Prediction Dashboard")
+
+# Upload CSV file
+uploaded_file = st.file_uploader("Upload E-commerce Customer CSV", type=["csv"])
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.subheader("📄 Preview of Uploaded Data")
+    st.dataframe(df.head())
+
+    # Define churn: 1 if Total_Purchases == 0, else 0
+    df['Churn'] = df['Total_Purchases'].apply(lambda x: 1 if x == 0 else 0)
+
+    # Encode categorical variables
+    le = LabelEncoder()
+    for col in ['Gender', 'Location', 'Device_Type']:
+        df[col] = le.fit_transform(df[col])
+
+    # Drop User_ID and Total_Purchases (since we're using it to define churn)
+    df.drop(columns=['User_ID', 'Total_Purchases'], inplace=True)
+
+    # Define features and target
+    X = df.drop('Churn', axis=1)
+    y = df['Churn']
+
+    # Handle class imbalance
+    smote = SMOTE(random_state=42)
+    X_resampled, y_resampled = smote.fit_resample(X, y)
+
+    # Train-test split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_resampled, y_resampled, test_size=0.2, random_state=42, stratify=y_resampled)
+
+    # Feature scaling
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    # Train Gradient Boosting Model
+    model = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+    model.fit(X_train, y_train)
+
+    # Evaluate model
+    y_pred = model.predict(X_test)
+    acc = accuracy_score(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+    cr = classification_report(y_test, y_pred, output_dict=True)
+
+    st.subheader("📊 Model Performance")
+    st.metric("Accuracy", f"{acc:.2%}")
+
+    st.write("### Confusion Matrix")
+    cm_df = pd.DataFrame(cm, columns=['Predicted Not Churn', 'Predicted Churn'],
+                         index=['Actual Not Churn', 'Actual Churn'])
+    st.dataframe(cm_df)
+
+    st.write("### Classification Report")
+    st.dataframe(pd.DataFrame(cr).transpose())
+
+    st.success("Model trained successfully. You can now upload new customer data for prediction.")
+
+    # Optional: Add section to upload new customer data and predict churn
+    st.markdown("---")
+    st.subheader("🔍 Predict Churn on New Data")
+    predict_file = st.file_uploader("Upload Customer Data for Prediction (same structure, no Churn column)", type=["csv"], key="predict")
+
+    if predict_file is not None:
+        pred_df = pd.read_csv(predict_file)
+        for col in ['Gender', 'Location', 'Device_Type']:
+            pred_df[col] = le.transform(pred_df[col])
+
+        user_ids = pred_df['User_ID']
+        pred_df = pred_df.drop(columns=['User_ID', 'Total_Purchases'])
+        pred_scaled = scaler.transform(pred_df)
+        pred_probs = model.predict_proba(pred_scaled)[:, 1]
+        pred_class = model.predict(pred_scaled)
+
+        results_df = pd.DataFrame({
+            'User_ID': user_ids,
+            'Churn_Probability': pred_probs,
+            'Churn_Predicted': pred_class
+        })
+
+        st.dataframe(results_df)
+        st.download_button("Download Predictions", data=results_df.to_csv(index=False), file_name="churn_predictions.csv")
+
