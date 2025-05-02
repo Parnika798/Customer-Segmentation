@@ -285,6 +285,31 @@ st.markdown(
 fig = px.bar(df, x='Items_Added_to_Cart',y='Total_Purchases',labels={'Items_Added_to_Cart':'No. of items added to Cart','Total_Purchases':'No. of purchases made'})
 st.plotly_chart(fig)
 
+with st.expander("View Insights:"):
+    st.markdown("""
+
+    - Stable Purchases (0–5 items): Users consistently purchase even with few items—indicates strong impulse buying or direct checkout behavior.
+
+    - Drop at 6 Items: Sharp decline suggests decision fatigue or cart abandonment risk.
+
+    - Spike at 7 Items: Peak purchases likely due to bulk buying or offer thresholds.
+
+    - High Conversion (8–10 items): Slight drop after 7, but conversions remain strong for high-cart users.
+
+
+    **Actionable Insight:**  
+    - Enable quick checkout for low-cart users.
+
+    -Add incentives or support at 6-item carts to reduce drop-off.
+
+    -Promote bulk offers/free shipping around 6–7 item mark.
+
+    -Use cart recovery nudges (emails, notifications) for abandoned carts.
+
+
+
+    """)
+
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
     <h2 style="color: #88304E;">Conversion Funnel:</h2>
@@ -337,6 +362,24 @@ funnel_df = pd.DataFrame(list(funnel_counts.items()), columns=['Stage', 'Users']
 fig = px.funnel(funnel_df, x='Users', y='Stage', title='Customer Conversion Funnel')
 st.plotly_chart(fig)
 
+import streamlit as st
+
+with st.expander("View Insights:"):
+    st.markdown("""
+    - **Visited Site → Added to Cart:**  
+       **91.8%** of users added items to cart (459 out of 500) — strong initial engagement.
+
+    - **Added to Cart → Purchased:**  
+      **87.4%** of cart users completed purchase (401 out of 459) — efficient checkout process.
+
+    - **Overall Site Conversion Rate:**  
+      **80.2%** of visitors made a purchase — a healthy funnel with minimal drop-offs.
+
+    **Actionable Insight:**  
+    - Maintain seamless user journey to preserve high conversion rates.  
+    - Explore slight improvements at the cart stage to push conversion beyond 85%.
+    """)
+
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
@@ -347,7 +390,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.title("🧠 Customer Churn Prediction Dashboard")
+
 
 # Upload CSV file
 uploaded_file = st.file_uploader("Upload E-commerce Customer CSV", type=["csv"])
