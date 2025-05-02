@@ -309,7 +309,7 @@ funnel_df = pd.DataFrame(list(funnel_counts.items()), columns=['Stage', 'Users']
 
 # Plot funnel chart using Plotly
 fig = px.funnel(funnel_df, x='Users', y='Stage', title='Customer Conversion Funnel')
-show.plotly_chart(fig)
+st.plotly_chart(fig)
 
 
 
