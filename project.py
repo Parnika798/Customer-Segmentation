@@ -259,6 +259,58 @@ st.markdown(
 fig = px.bar(df, x='Items_Added_to_Cart',y='Total_Purchases',labels={'Items_Added_to_Cart':'No. of items added to Cart','Total_Purchases':'No. of purchases made'})
 st.plotly_chart(fig)
 
+st.markdown("""
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
+    <h2 style="color: #88304E;">Conversion Funnel:</h2>
+    <p style="color: #F7374F; font-size: 16px; font-family: 'Arial';">
+    From browsing to buying — tracking customer drop-offs at each stage of the purchase journey.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# Define each funnel stage
+visited = df[df['Product_Browsing_Time'] > 0]
+added_to_cart = df[df['Items_Added_to_Cart'] > 0]
+purchased = df[df['Total_Purchases'] > 0]
+
+# Count users at each stage
+funnel_counts = {
+    'Visited Site': len(visited),
+    'Added to Cart': len(added_to_cart),
+    'Purchased': len(purchased)
+}
+
+# Convert to DataFrame for easy visualization
+funnel_df = pd.DataFrame(list(funnel_counts.items()), columns=['Stage', 'Users'])
+
+# Calculate conversion rates
+funnel_df['Conversion Rate (%)'] = funnel_df['Users'].pct_change().fillna(1) * 100
+
+print(funnel_df)
+
+import pandas as pd
+import plotly.express as px
+
+# Assuming 'data' is your DataFrame
+# Define funnel stages
+visited = df[df['Product_Browsing_Time'] > 0]
+added_to_cart = df[df['Items_Added_to_Cart'] > 0]
+purchased = df[df['Total_Purchases'] > 0]
+
+# Count users at each stage
+funnel_counts = {
+    'Visited Site': len(visited),
+    'Added to Cart': len(added_to_cart),
+    'Purchased': len(purchased)
+}
+
+# Convert to DataFrame
+funnel_df = pd.DataFrame(list(funnel_counts.items()), columns=['Stage', 'Users'])
+
+# Plot funnel chart using Plotly
+fig = px.funnel(funnel_df, x='Users', y='Stage', title='Customer Conversion Funnel')
+show.plotly_chart(fig)
+
 
 
 
