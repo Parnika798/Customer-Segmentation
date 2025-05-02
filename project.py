@@ -20,6 +20,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from imblearn.over_sampling import SMOTE
 import plotly.express as px
+import plotly.graph_objects as go
 
 # Set Streamlit page config
 st.set_page_config(page_title="Customer Analysis", layout="wide")
@@ -104,7 +105,7 @@ with col2:
     xaxis_tickangle=-45
     )
 
-    st.show(fig)
+    st.plotly_chart(fig)
 
 
 # --------- Third Graph ----------
@@ -133,6 +134,112 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# Create 2 columns
+col1, col2 = st.columns(2)
+
+# --------- First Graph ----------
+with col1:
+    st.markdown(
+    "<h3 style='color: #D95F59;'>Device Type vs Avg. Browsing Time and Pages Viewed</h3>", 
+    unsafe_allow_html=True
+    )
+    
+    
+
+    # Grouping the data
+    device_stats = df.groupby('Device_Type')[['Product_Browsing_Time', 'Total_Pages_Viewed']].mean().reset_index()
+
+    # Define max value for consistent Y-axis scale
+    y_max = max(device_stats['Product_Browsing_Time'].max(), device_stats['Total_Pages_Viewed'].max()) + 5
+
+    # Create figure
+    fig = go.Figure()
+
+    # Bar plot for Avg. Browsing Time
+    fig.add_trace(go.Bar(
+    x=device_stats['Device_Type'],
+    y=device_stats['Product_Browsing_Time'],
+    name='Avg. Browsing Time',
+    marker_color='skyblue',
+    text=device_stats['Product_Browsing_Time'].round(1),
+    textposition='outside'
+    ))
+
+    # Line plot for Avg. Pages Viewed
+    fig.add_trace(go.Scatter(
+    x=device_stats['Device_Type'],
+    y=device_stats['Total_Pages_Viewed'],
+    name='Avg. Pages Viewed',
+    mode='lines+markers+text',
+    marker=dict(color='maroon', size=10),
+    line=dict(width=2),
+    text=device_stats['Total_Pages_Viewed'].round(1),
+    textposition='top center'
+    ))
+
+    # Layout setup
+    fig.update_layout(
+    
+    xaxis_title='Device Type',
+    yaxis_title='Value',
+    yaxis=dict(range=[0, y_max]),
+    legend=dict(x=0.01, y=0.99),
+    height=500,
+    bargap=0.3
+    )
+
+    show.plotly_chart(fig)
+
+with col1:
+    st.markdown(
+    "<h3 style='color: #D95F59;'>Gender vs Avg. Pages Viewed and Browsing Time</h3>", 
+    unsafe_allow_html=True
+    )
+    
+    # Grouping the data by Gender
+    gender_stats = df.groupby('Gender')[['Product_Browsing_Time', 'Total_Pages_Viewed']].mean().reset_index()
+
+    # Define max value for consistent Y-axis scale
+    y_max = max(gender_stats['Product_Browsing_Time'].max(), gender_stats['Total_Pages_Viewed'].max()) + 5
+
+    # Create figure
+    fig = go.Figure()
+
+    # Bar plot for Avg. Pages Viewed
+    fig.add_trace(go.Bar(
+    x=gender_stats['Gender'],
+    y=gender_stats['Total_Pages_Viewed'],
+    name='Avg. Pages Viewed',
+    marker_color='lightcoral',
+    text=gender_stats['Total_Pages_Viewed'].round(1),
+    textposition='outside'
+    ))
+
+    # Line plot for Avg. Browsing Time
+    fig.add_trace(go.Scatter(
+    x=gender_stats['Gender'],
+    y=gender_stats['Product_Browsing_Time'],
+    name='Avg. Browsing Time',
+    mode='lines+markers+text',
+    marker=dict(color='navy', size=10),
+    line=dict(width=2),
+    text=gender_stats['Product_Browsing_Time'].round(1),
+    textposition='top center'
+    ))
+
+    # Layout setup
+    fig.update_layout(
+   
+    xaxis_title='Gender',
+    yaxis_title='Value',
+    yaxis=dict(range=[0, y_max]),
+    legend=dict(x=0.01, y=0.99),
+    height=500,
+    bargap=0.3
+    )
+
+    show.plotly_chart(fig)
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;">
