@@ -338,10 +338,18 @@ fig = px.funnel(funnel_df, x='Users', y='Stage', title='Customer Conversion Funn
 st.plotly_chart(fig)
 
 
+st.markdown("""
+<div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
+    <h2 style="color: #88304E;">Churn Predictor:</h2>
+    <p style="color: #F7374F; font-size: 16px; font-family: 'Arial';">
+    Empower your retention strategy with smart churn forecasting.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
+st.title("🧠 Customer Churn Prediction Dashboard")
 
-
-# Upload CSV
+# Upload CSV file
 uploaded_file = st.file_uploader("Upload E-commerce Customer CSV", type=["csv"])
 
 if uploaded_file is not None:
@@ -349,39 +357,63 @@ if uploaded_file is not None:
     st.subheader("📄 Preview of Uploaded Data")
     st.dataframe(df.head())
 
-    # Churn definition
+    # Define churn: 1 if Total_Purchases == 0, else 0
     df['Churn'] = df['Total_Purchases'].apply(lambda x: 1 if x == 0 else 0)
 
-    # Encode categoricals using per-column encoders
+    # Encode categorical variables and store LabelEncoders
     le_dict = {}
     for col in ['Gender', 'Location', 'Device_Type']:
         le = LabelEncoder()
         df[col] = le.fit_transform(df[col])
-        le_dict[col] = le  # Save encoder for later use
+        le_dict[col] = le
 
-    # Drop irrelevant columns
+    # Drop User_ID and Total_Purchases (not used for model input)
     df.drop(columns=['User_ID', 'Total_Purchases'], inplace=True)
 
-    # Prepare features/labels
+    # Define features and target
     X = df.drop('Churn', axis=1)
     y = df['Churn']
 
-    # Handle imbalance
+    # Handle class imbalance
     smote = SMOTE(random_state=42)
     X_resampled, y_resampled = smote.fit_resample(X, y)
 
-    # Train/test split and scaling
-    X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, stratify=y_resampled)
+    # Train-test split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_resampled, y_resampled, test_size=0.2, random_state=42, stratify=y_resampled)
+
+    # Feature scaling
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
     # Train model
-    model = GradientBoostingClassifier()
+    model = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
     model.fit(X_train, y_train)
 
-    # Manual churn prediction
+    # Evaluation
+    y_pred = model.predict(X_test)
+    acc = accuracy_score(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+    cr = classification_report(y_test, y_pred, output_dict=True)
+
+    st.subheader("📊 Model Performance")
+    st.metric("Accuracy", f"{acc:.2%}")
+    
+    st.write("### Confusion Matrix")
+    cm_df = pd.DataFrame(cm, columns=['Predicted Not Churn', 'Predicted Churn'],
+                         index=['Actual Not Churn', 'Actual Churn'])
+    st.dataframe(cm_df)
+
+    st.write("### Classification Report")
+    st.dataframe(pd.DataFrame(cr).transpose())
+
+    st.success("Model trained successfully. You can now manually enter customer data for churn prediction.")
+
+    # Manual prediction section
+    st.markdown("---")
     st.subheader("🧾 Manual Churn Prediction")
+
     with st.form("churn_form"):
         gender_input = st.selectbox("Gender", options=le_dict['Gender'].classes_)
         location_input = st.selectbox("Location", options=le_dict['Location'].classes_)
@@ -390,22 +422,26 @@ if uploaded_file is not None:
         browsing_time = st.number_input("Product Browsing Time (minutes)", min_value=0.0, step=1.0)
         pages_viewed = st.number_input("Total Pages Viewed", min_value=0, step=1)
         items_added = st.number_input("Items Added to Cart", min_value=0, step=1)
-
         submitted = st.form_submit_button("Predict Churn")
 
     if submitted:
+        # Encode user inputs
         gender = le_dict['Gender'].transform([gender_input])[0]
         location = le_dict['Location'].transform([location_input])[0]
         device = le_dict['Device_Type'].transform([device_input])[0]
 
+        # Create input array
         input_array = np.array([[gender, age, location, device, browsing_time, pages_viewed, items_added]])
         input_scaled = scaler.transform(input_array)
 
+        # Make prediction
         prob = model.predict_proba(input_scaled)[0][1]
         pred = model.predict(input_scaled)[0]
 
+        st.markdown("### 🔍 Churn Prediction Result")
         st.metric("Churn Probability", f"{prob:.2%}")
         st.success("Prediction: Churn" if pred == 1 else "Prediction: Not Churn")
+
 
 
 
