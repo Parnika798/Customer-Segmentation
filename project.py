@@ -208,3 +208,35 @@ if uploaded_file is not None:
         st.dataframe(results_df)
         st.download_button("Download Predictions", data=results_df.to_csv(index=False), file_name="churn_predictions.csv")
 
+
+    st.markdown("---")
+    st.subheader("🧾 Manual Churn Prediction")
+
+    with st.form("churn_form"):
+        gender_input = st.selectbox("Gender", options=le_dict['Gender'].classes_)
+        location_input = st.selectbox("Location", options=le_dict['Location'].classes_)
+        device_input = st.selectbox("Device Type", options=le_dict['Device_Type'].classes_)
+        age = st.number_input("Age", min_value=10, max_value=100, value=30)
+        browsing_time = st.number_input("Product Browsing Time (minutes)", min_value=0.0, step=1.0)
+        pages_viewed = st.number_input("Total Pages Viewed", min_value=0, step=1)
+        items_added = st.number_input("Items Added to Cart", min_value=0, step=1)
+
+        submitted = st.form_submit_button("Predict Churn")
+
+    if submitted:
+        # Encode categorical features
+        gender = le_dict['Gender'].transform([gender_input])[0]
+        location = le_dict['Location'].transform([location_input])[0]
+        device = le_dict['Device_Type'].transform([device_input])[0]
+
+        input_array = np.array([[gender, age, location, device, browsing_time, pages_viewed, items_added]])
+        input_scaled = scaler.transform(input_array)
+
+        prob = model.predict_proba(input_scaled)[0][1]
+        pred = model.predict(input_scaled)[0]
+
+        st.markdown(f"### 🔍 Churn Prediction Result")
+        st.metric("Churn Probability", f"{prob:.2%}")
+        st.success("Prediction: Churn" if pred == 1 else "Prediction: Not Churn")
+
+
