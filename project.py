@@ -12,6 +12,13 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
+import joblib
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Set Streamlit page config
 st.set_page_config(page_title="Customer Analysis", layout="wide")
@@ -113,19 +120,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-import streamlit as st
-import pandas as pd
-import numpy as np
-import joblib
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-from imblearn.over_sampling import SMOTE
 
-st.set_page_config(page_title="Churn Predictor", layout="wide")
 
-st.title("🧠 Customer Churn Prediction Dashboard")
+
 
 # Upload CSV file
 uploaded_file = st.file_uploader("Upload E-commerce Customer CSV", type=["csv"])
