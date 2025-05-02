@@ -265,6 +265,34 @@ with col2:
     )
 
     st.plotly_chart(fig)
+    
+with st.expander("View Insights:"):
+st.markdown("""
+    
+    ✅ Insights:
+    - Tablet users spend the most time and view nearly the same number of pages as mobile users.
+
+    - Mobile usage dominates with the best balance between time spent and pages viewed — optimal engagement.
+
+    - Desktop usage has the lowest engagement, indicating possible UX issues or lower motivation to explore.
+
+
+    **Recommendations :**  
+    - Optimize mobile and tablet UX/UI further — they are your most promising platforms.
+
+    - Consider desktop-focused retargeting strategies or progressive web apps to improve engagement for desktop users.
+
+
+    
+     ✅ Insights:
+     - Females slightly outperform males in both time and pages viewed, indicating higher engagement from female users
+
+     **Recommendations :**  
+
+     - Explore personalized content or offers for female users, especially in key product categories.
+
+     - For males, consider using push notifications or gamified incentives to increase time-on-site and interaction depth.
+     """)
 
 st.markdown("""
 <div style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); padding: 10px 20px; border-radius: 10px;text-align: center;">
@@ -299,11 +327,11 @@ with st.expander("View Insights:"):
     **Actionable Insight:**  
     - Enable quick checkout for low-cart users.
 
-    -Add incentives or support at 6-item carts to reduce drop-off.
+    - Add incentives or support at 6-item carts to reduce drop-off.
 
-    -Promote bulk offers/free shipping around 6–7 item mark.
+    - Promote bulk offers/free shipping around 6–7 item mark.
 
-    -Use cart recovery nudges (emails, notifications) for abandoned carts.
+    - Use cart recovery nudges (emails, notifications) for abandoned carts.
 
 
 
