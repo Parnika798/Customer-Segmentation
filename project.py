@@ -341,7 +341,7 @@ st.plotly_chart(fig)
 
 
 
-# Upload CSV file
+# Upload CSV
 uploaded_file = st.file_uploader("Upload E-commerce Customer CSV", type=["csv"])
 
 if uploaded_file is not None:
@@ -349,64 +349,39 @@ if uploaded_file is not None:
     st.subheader("📄 Preview of Uploaded Data")
     st.dataframe(df.head())
 
-    # Define churn: 1 if Total_Purchases == 0, else 0
+    # Churn definition
     df['Churn'] = df['Total_Purchases'].apply(lambda x: 1 if x == 0 else 0)
 
-    # Encode categorical variables
-    le = LabelEncoder()
+    # Encode categoricals using per-column encoders
+    le_dict = {}
     for col in ['Gender', 'Location', 'Device_Type']:
+        le = LabelEncoder()
         df[col] = le.fit_transform(df[col])
+        le_dict[col] = le  # Save encoder for later use
 
-    # Drop User_ID and Total_Purchases (since we're using it to define churn)
+    # Drop irrelevant columns
     df.drop(columns=['User_ID', 'Total_Purchases'], inplace=True)
 
-    # Define features and target
+    # Prepare features/labels
     X = df.drop('Churn', axis=1)
     y = df['Churn']
 
-    # Handle class imbalance
+    # Handle imbalance
     smote = SMOTE(random_state=42)
     X_resampled, y_resampled = smote.fit_resample(X, y)
 
-    # Train-test split
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_resampled, y_resampled, test_size=0.2, random_state=42, stratify=y_resampled)
-
-    # Feature scaling
+    # Train/test split and scaling
+    X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, stratify=y_resampled)
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    # Train Gradient Boosting Model
-    model = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+    # Train model
+    model = GradientBoostingClassifier()
     model.fit(X_train, y_train)
 
-    # Evaluate model
-    y_pred = model.predict(X_test)
-    acc = accuracy_score(y_test, y_pred)
-    cm = confusion_matrix(y_test, y_pred)
-    cr = classification_report(y_test, y_pred, output_dict=True)
-
-    st.subheader("📊 Model Performance")
-    st.metric("Accuracy", f"{acc:.2%}")
-
-    st.write("### Confusion Matrix")
-    cm_df = pd.DataFrame(cm, columns=['Predicted Not Churn', 'Predicted Churn'],
-                         index=['Actual Not Churn', 'Actual Churn'])
-    st.dataframe(cm_df)
-
-    st.write("### Classification Report")
-    st.dataframe(pd.DataFrame(cr).transpose())
-
-    st.success("Model trained successfully. You can now upload new customer data for prediction.")
-
-    # Optional: Add section to upload new customer data and predict churn
-    st.markdown("---")
-    st.subheader("🔍 Predict Churn on New Data")
-    
-    st.markdown("---")
+    # Manual churn prediction
     st.subheader("🧾 Manual Churn Prediction")
-
     with st.form("churn_form"):
         gender_input = st.selectbox("Gender", options=le_dict['Gender'].classes_)
         location_input = st.selectbox("Location", options=le_dict['Location'].classes_)
@@ -419,7 +394,6 @@ if uploaded_file is not None:
         submitted = st.form_submit_button("Predict Churn")
 
     if submitted:
-        # Encode categorical features
         gender = le_dict['Gender'].transform([gender_input])[0]
         location = le_dict['Location'].transform([location_input])[0]
         device = le_dict['Device_Type'].transform([device_input])[0]
@@ -430,8 +404,8 @@ if uploaded_file is not None:
         prob = model.predict_proba(input_scaled)[0][1]
         pred = model.predict(input_scaled)[0]
 
-        st.markdown(f"### 🔍 Churn Prediction Result")
         st.metric("Churn Probability", f"{prob:.2%}")
         st.success("Prediction: Churn" if pred == 1 else "Prediction: Not Churn")
+
 
 
