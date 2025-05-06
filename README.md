@@ -1,27 +1,62 @@
-# Customer Behaviour Analysis and Churn Predictor
+
+# 📊 Customer Behavior Analysis & Churn Predictor Dashboard
+
+🚀 **[Live Demo → Click Here](https://parnika798-customer-churn-predictor.streamlit.app/)**
+🔗 *Built with Streamlit | Powered by Gradient Boosting | Accuracy: 81.37%*
+
+---
+
+## Overview
+
+This interactive Streamlit dashboard provides actionable insights into:
+
+* **Customer Demographics**
+* **User Behavior Patterns**
+* **Purchase Transactions**
+* **Churn Prediction** using Machine Learning (Gradient Boosting Classifier)
+
+It's designed to assist businesses in optimizing user engagement, improving conversions, and proactively reducing churn.
+
+---
+
+## Dataset Features
+
+| Column                  | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `User_ID`               | Unique identifier for each customer                |
+| `Gender`                | Customer's gender                                  |
+| `Age`                   | Age in years                                       |
+| `Location`              | Customer's location                                |
+| `Device_Type`           | Device used for browsing (Mobile, Tablet, Desktop) |
+| `Product_Browsing_Time` | Total minutes spent browsing                       |
+| `Total_Pages_Viewed`    | Number of product pages viewed                     |
+| `Items_Added_to_Cart`   | Number of items added to cart                      |
+| `Total_Purchases`       | Number of successful purchases                     |
+
+---
+
+## Dashboard Features
+
+✅ **Demographics Analysis**
+✅ **Behavioral Trends by Device**
+✅ **Conversion Funnel (Browse → Add to Cart → Purchase)**
+✅ **Churn Prediction (81.37% Accuracy)**
+✅ **Intuitive Visualizations & Filters**
+
+---
+
+## ML Model Summary
+
+* **Algorithm**: Gradient Boosting Classifier
+* **Preprocessing**: Label Encoding, Standardization
+* **Target**: Customer Churn (Yes/No)
+* **Accuracy**: **81.37%** on validation data
+* **Deployment**: Integrated with Streamlit for real-time predictions
+
+---
 
 
-This streamlit dashboard analyses a dataset and provides insights into Customer Demographics, Behaviour and Transactions along with optimisation strategies.
-
-The dataset contains following features:
-
-- User_ID: Unique identifier for each customer.
-
-- Gender: Gender of the customer (e.g., Male, Female).
-
-- Age: Age of the customer.
-
-- Location: Location of the customer.
-
-- Device_Type: Type of device used for browsing (e.g., Mobile, Tablet, Desktop).
-
-- Product_Browsing_Time: Amount of time spent browsing products (in minutes).
-
-- Total_Pages_Viewed: Total number of pages viewed during the browsing session.
-
-- Items_Added_to_Cart: Number of items added to the shopping cart.
-
-- Total_Purchases: Total number of purchases made.
 
 
-The Churn Predictor works on Gradient Boosting Algorithm and can help stakeholders forecast chance of customer retention with an accuracy of 81.37 %
+
+
