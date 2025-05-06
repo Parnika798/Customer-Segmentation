@@ -1,7 +1,7 @@
 
 # 📊 Customer Behavior Analysis & Churn Predictor Dashboard
 
-🚀 **[Live Demo → Click Here](https://parnika798-customer-churn-predictor.streamlit.app/)**
+🚀 **[Link:](https://customer-segmentation-eaglfymbw6yea7umryufvg.streamlit.app/)**
 🔗 *Built with Streamlit | Powered by Gradient Boosting | Accuracy: 81.37%*
 
 ---
