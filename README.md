@@ -37,11 +37,15 @@ It's designed to assist businesses in optimizing user engagement, improving conv
 
 ## Dashboard Features
 
-✅ **Demographics Analysis**
-✅ **Behavioral Trends by Device**
-✅ **Conversion Funnel (Browse → Add to Cart → Purchase)**
-✅ **Churn Prediction (81.37% Accuracy)**
-✅ **Intuitive Visualizations & Filters**
+ **Demographics Analysis**
+ 
+**Behavioral Trends by Device**
+
+ **Conversion Funnel (Browse → Add to Cart → Purchase)**
+ 
+ **Churn Prediction (81.37% Accuracy)**
+ 
+ **Intuitive Visualizations & Filters**
 
 ---
 
